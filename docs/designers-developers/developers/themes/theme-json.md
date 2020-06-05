@@ -6,9 +6,9 @@
 
 This is documentation for the current direction and work in progress about how themes can hook into the various sub-systems that the Block Editor provides.
 
-* Rationale
-* Specification
-* Current Status
+- Rationale
+- Specification
+- Current Status
 
 ## Rationale
 
@@ -161,8 +161,16 @@ Each block will declare which style properties it exposes. This has been coined 
 
 The list of properties that are currently exposed via this method are:
 
-- Paragraph and Heading: line-height, font-size, color.
-- Group, Columns, and MediaText: color.
+| Context | Text's Color | Background's Color | Background's Gradient | Font Size | Line Height |
+| --- | --- | --- | --- | --- | --- |
+| Global | - | Yes | - | - | - |
+| Paragraph | Yes | Yes | - | Yes | Yes |
+| Heading [1] | Yes | Yes | - | Yes | Yes |
+| Group | Yes | Yes | Yes | - | - |
+| Columns | Yes | Yes | Yes | - | - |
+| Media & text | Yes | Yes | Yes | - | - |
+
+[1] The heading block represents 6 distinct HTML elements: H1-H6. It comes with selectors to target each individual element (ex: core/heading/h1 for H1, etc).
 
 ### Features
 
@@ -233,34 +241,102 @@ The list of features that are currently supported are:
         },
         { ... }
       ]
+    },
+    "styles": {
+      "color": {
+        "background": <value>
+      }
     }
   },
   "core/paragraph": {
     "styles": {
-      "typography": {
-        "lineHeight": <value>,
-        "fontSize": <value>
-      },
       "color": {
+        "background": <value>,
         "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
       }
     }
   },
-  /* core/heading/h1, core/heading/h2, etc */
-  "core/heading/h*": {
+  "core/heading/h1": {
     "styles": {
-      "typography": {
-        "lineHeight": <value>,
-        "fontSize": <value>
-      },
       "color": {
+        "background": <value>,
         "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
+      }
+    }
+  },
+  "core/heading/h2": {
+    "styles": {
+      "color": {
+        "background": <value>,
+        "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
+      }
+    }
+  },
+  "core/heading/h3": {
+    "styles": {
+      "color": {
+        "background": <value>,
+        "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
+      }
+    }
+  },
+  "core/heading/h4": {
+    "styles": {
+      "color": {
+        "background": <value>,
+        "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
+      }
+    }
+  },
+  "core/heading/h5": {
+    "styles": {
+      "color": {
+        "background": <value>,
+        "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
+      }
+    }
+  },
+  "core/heading/h6": {
+    "styles": {
+      "color": {
+        "background": <value>,
+        "text": <value>
+      },
+      "typography": {
+        "fontSize": <value>,
+        "lineHeight": <value>
       }
     }
   },
   "core/columns": {
     "styles": {
       "color": {
+        "background": <value>,
+        "gradient": <value>,
         "text": <value>
       }
     }
@@ -268,6 +344,8 @@ The list of features that are currently supported are:
   "core/group": {
     "styles": {
       "color": {
+        "background": <value>,
+        "gradient": <value>,
         "text": <value>
       }
     }
@@ -275,6 +353,8 @@ The list of features that are currently supported are:
   "core/media-text": {
     "styles": {
       "color": {
+        "background": <value>,
+        "gradient": <value>,
         "text": <value>
       }
     }
